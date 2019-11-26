@@ -54,6 +54,7 @@ int main(void)
 				j++;
 			}
 			argv[j] = NULL;
+			path(&argv[0]);
 			if (execve(argv[0], argv, NULL) == -1)
 			{
 				perror("Error");

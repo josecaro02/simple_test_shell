@@ -10,15 +10,17 @@
 #include <string.h>
 #include <signal.h>
 
+extern char **environ;
+
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char *str_concat(char *s1, char *s2);
 char *_strstr(char *haystack, char *needle);
 char *_strchr(char *s, char c);
 
-int _which(char *s);
 void signalhandler();
 void path(char **argv);
-int _env(void);
+void _env(void);
+char *_getenv(char *var);
 
 #endif /* SIMPLE_SHELL_H */
