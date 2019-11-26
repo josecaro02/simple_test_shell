@@ -12,7 +12,12 @@
 
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
+int str_concat(char *s1, char *s2);
+char *_strstr(char *haystack, char *needle);
+
 int _which(char *s);
 void signalhandler();
+char *path(char **argv);
+int _env(void);
 
 #endif /* SIMPLE_SHELL_H */
