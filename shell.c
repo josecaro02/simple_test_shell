@@ -1,41 +1,6 @@
 #include "simple_shell.h"
 
 /**
- * singnalhandler - Ignore CTRL + C.
- *
- * Return: Nothing.
- */
-
-void signalhandler()
-{
-	write(1, "\n#cisfun$ ", 10);
-}
-
-/**
- * _strcmp - Function that compares two strings.
- * @s1: String 1.
- * @s2: String 2.
- *
- * Return: Comparation.
- */
-
-int _strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i])
-	{
-		if ((s1[i] > s2[i]) || (s1[i] < s2[i]))
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
-	}
-	return (0);
-}
-
-/**
  * main - Display prompt.
  *
  * Return: Always 0.

@@ -14,11 +14,3 @@ int _env(void)
 	}
 	return (0);
 }
-
-/* int main(void) */
-/* { */
-/* 	int i; */
-
-/* 	i = _env(); */
-/* 	return (i); */
-/* } */

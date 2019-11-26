@@ -6,16 +6,12 @@
  * Return: A pointer created with malloc.
  */
 
-char *path(char **argv)
+void path(char **argv)
 {
 	struct stat st;
 	char *slsh = "/";
 	char *env_path, *command, *token, *path;
 
-	if (argv[0][0] == '/')
-	{
-		return (argv[0]);
-	}
 	env_path = _getenv("PATH");
 	command = str_concat(slsh, argv[0]);
 	token = strtok(env_path, ":");
@@ -24,6 +20,7 @@ char *path(char **argv)
 		path = str_concat(token, command);
 		if (stat(path, &st) == 0)
 		{
+			argv[0] = path;
 			break;
 		}
 		token = strtok(NULL, ":");
@@ -31,5 +28,3 @@ char *path(char **argv)
 	free(command);
 	return (path);
 }
-
-int main
