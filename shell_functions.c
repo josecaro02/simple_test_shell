@@ -83,6 +83,7 @@ void _env(void)
         while (*ep)
         {
                 write(1, *ep, _strlen(*ep));
+		write(1, "\n", 1);
                 ep++;
         }
 }

@@ -9,31 +9,34 @@
 int main(void)
 {
 	char *prompt = "#cisfun$ ";
-	char *salida = "exit";
-	char *buffer, *token;
+	char *buffer = NULL, *token = NULL;
 	size_t size = 1024;
 	pid_t child;
 	char *argv[256];
-	int i, j;
+	int i = 0, j, atty = 0;
 
-	buffer = malloc(sizeof(char) * size);
-	if (!buffer)
+	if (!(isatty(fileno(stdin))))
 	{
-		perror("Unable to allocate buffer");
-		exit (0);
+		atty = 1;
 	}
 	do {
-		write(1, prompt, 9);
+		if (atty == 0)
+		{
+			write(1, prompt, 9);
+		}
 		signal(SIGINT, signalhandler);
 		i = getline(&buffer, &size, stdin);
-		if (_strcmp(salida, buffer) == 0)
+		if (_strcmp(buffer, "exit\n") == 0)
 		{
 			free(buffer);
 			return (0);
 		}
 		if (i == -1)
 		{
-			write(1, "\n", 1);
+			if (atty == 0)
+			{
+				write(1, "\n", 1);
+			}
 			free(buffer);
 			return (0);
 		}
@@ -54,10 +57,14 @@ int main(void)
 				j++;
 			}
 			argv[j] = NULL;
-			path(&argv[0]);
+			if (argv[0][0] != '.')
+			{
+				path(&argv[0]);
+			}
 			if (execve(argv[0], argv, NULL) == -1)
 			{
 				perror("Error");
+				free(buffer);
 			}
 			exit(0);
 		}

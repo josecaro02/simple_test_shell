@@ -54,7 +54,7 @@ int _strcmp(char *s1, char *s2)
 char *str_concat(char *s1, char *s2)
 {
         char *array;
-        int size1, size2, i;
+        int size1 = 0, size2 = 0, i = 0;
 
         if (!s1)
                 size1 = 0;
