@@ -18,7 +18,7 @@ char *str_concat(char *s1, char *s2);
 char *_strstr(char *haystack, char *needle);
 char *_strchr(char *s, char c);
 
-void signalhandler();
+void signalhandler(__attribute__((unused))int s);
 void path(char **argv);
 void _env(void);
 char *_getenv(char *var);

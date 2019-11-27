@@ -6,7 +6,7 @@
  * Return: Nothing.
  */
 
-void signalhandler()
+void signalhandler(__attribute__((unused))int s)
 {
         write(1, "\n#cisfun$ ", 10);
 }

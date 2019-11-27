@@ -16,9 +16,7 @@ int main(void)
 	int i = 0, j, atty = 0;
 
 	if (!(isatty(fileno(stdin))))
-	{
 		atty = 1;
-	}
 	do {
 		if (atty == 0)
 		{
@@ -26,20 +24,18 @@ int main(void)
 		}
 		signal(SIGINT, signalhandler);
 		i = getline(&buffer, &size, stdin);
-		if (_strcmp(buffer, "exit\n") == 0)
-		{
-			free(buffer);
-			return (0);
-		}
 		if (i == -1)
 		{
 			if (atty == 0)
-			{
 				write(1, "\n", 1);
-			}
 			free(buffer);
 			return (0);
 		}
+		if (_strcmp(buffer, "exit\n") == 0)
+		{
+                        free(buffer);
+                        return (0);
+                }
 		child = fork();
 		if (child == -1)
 		{
@@ -64,7 +60,6 @@ int main(void)
 			if (execve(argv[0], argv, NULL) == -1)
 			{
 				perror("Error");
-				free(buffer);
 			}
 			exit(0);
 		}
