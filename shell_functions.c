@@ -62,13 +62,11 @@ void path(char **argv)
 		if (stat(path, &st) == 0)
 		{
                         argv[0] = path;
-			write(1,argv[0], _strlen(argv[0]));
                         break;
                 }
                 token = strtok(NULL, ":");
         }
         free(command);
-	free(path);
 }
 
 /**
@@ -84,7 +82,7 @@ void _env(void)
         ep = environ;
         while (*ep)
         {
-                puts(*ep);
+                write(1, *ep, _strlen(*ep));
                 ep++;
         }
 }
