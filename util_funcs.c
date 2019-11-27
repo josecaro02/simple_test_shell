@@ -90,3 +90,22 @@ int _atoi(char *s)
 	}
 	return (dig_n * sign);
 }
+
+/**
+ * _strcmp - Function that compares two strings.
+ * @s1: String 1.
+ * @s2: String 2.
+ *
+ * Return: Comparation.
+ */
+int _strcmp(char *s1, char *s2)
+{
+       int compare, i;
+       for (i = 0; s2[i] != '\0'; i++)
+       {
+	       compare = s1[i] - s2[i];
+               if (compare != 0)
+                       break;
+       }
+       return (compare);
+}
