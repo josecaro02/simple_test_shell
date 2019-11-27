@@ -1,14 +1,15 @@
 #include "simple_shell.h"
 
 /**
- * singnalhandler - Ignore CTRL + C.
+ * signalhandler - Ignore CTRL + C.
+ * @s: IDK.
  *
  * Return: Nothing.
  */
 
 void signalhandler(__attribute__((unused))int s)
 {
-        write(1, "\n#cisfun$ ", 10);
+	write(1, "\n#cisfun$ ", 10);
 }
 
 /**
@@ -20,24 +21,24 @@ void signalhandler(__attribute__((unused))int s)
 
 char *_getenv(char *var)
 {
-        char *token;
-        int i;
+	char *token;
+	int i;
 
-        i = 0;
-        while (environ[i])
-        {
-                if (_strcmp(var, environ[i]) == 0)
-                {
-                        token = _strstr(environ[i], var);
-                        if (token[0] == '=')
-                        {
-                                token = _strchr(environ[i], '=');
-                                return (token);
-                        }
-                }
-                i++;
-        }
-        return (0);
+	i = 0;
+	while (environ[i])
+	{
+		if (_strcmp(var, environ[i]) == 0)
+		{
+			token = _strstr(environ[i], var);
+			if (token[0] == '=')
+			{
+				token = _strchr(environ[i], '=');
+				return (token);
+			}
+		}
+		i++;
+	}
+	return (0);
 }
 
 /**
@@ -49,24 +50,24 @@ char *_getenv(char *var)
 
 void path(char **argv)
 {
-        struct stat st;
-        char *slsh = "/";
-        char *env_path, *command, *token, *path;
+	struct stat st;
+	char *slsh = "/";
+	char *env_path, *command, *token, *path;
 
-        env_path = _getenv("PATH");
-        command = str_concat(slsh, argv[0]);
-        token = strtok(env_path, ":");
-        while (token)
-        {
+	env_path = _getenv("PATH");
+	command = str_concat(slsh, argv[0]);
+	token = strtok(env_path, ":");
+	while (token)
+	{
 		path = str_concat(token, command);
 		if (stat(path, &st) == 0)
 		{
-                        argv[0] = path;
-                        break;
-                }
-                token = strtok(NULL, ":");
-        }
-        free(command);
+			argv[0] = path;
+			break;
+		}
+		token = strtok(NULL, ":");
+	}
+	free(command);
 }
 
 /**
@@ -77,13 +78,13 @@ void path(char **argv)
 
 void _env(void)
 {
-        char **ep;
+	char **ep;
 
-        ep = environ;
-        while (*ep)
-        {
-                write(1, *ep, _strlen(*ep));
+	ep = environ;
+	while (*ep)
+	{
+		write(1, *ep, _strlen(*ep));
 		write(1, "\n", 1);
-                ep++;
-        }
+		ep++;
+	}
 }
